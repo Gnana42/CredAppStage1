@@ -44,11 +44,11 @@ stages:
             displayName: Trivy Installation
 
           - script: |
-              trivy image frontend:$(Build.BuildID) --severity HIGH,CRITICAL --format template --template "@reports/html.tpl" -o reports/frontend-reports.html
+              trivy image frontend:$(Build.BuildID) --severity HIGH,CRITICAL --format template --template "@reports/html.tpl" -o reports/frontend-reports.html --exit-code 1
               trivy image frontend:$(Build.BuildID) --severity HIGH,CRITICAL --format json -o reports/frontend-reports.json
-              trivy image user-service:$(Build.BuildID) --severity HIGH,CRITICAL --format template --template "@reports/html.tpl" -o reports/user-service-reports.html
+              trivy image user-service:$(Build.BuildID) --severity HIGH,CRITICAL --format template --template "@reports/html.tpl" -o reports/user-service-reports.html --exit-code 1
               trivy image user-service:$(Build.BuildID) --severity HIGH,CRITICAL --format json -o reports/user-service-reports.json
-              trivy image payment-service:$(Build.BuildID) --severity HIGH,CRITICAL --format template --template "@reports/html.tpl" -o reports/payment-service-reports.html
+              trivy image payment-service:$(Build.BuildID) --severity HIGH,CRITICAL --format template --template "@reports/html.tpl" -o reports/payment-service-reports.html --exit-code 1
               trivy image payment-service:$(Build.BuildID) --severity HIGH,CRITICAL --format json -o reports/payment-service-reports.json
             displayName: Scan the images
 
